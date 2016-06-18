@@ -1,14 +1,35 @@
-var demo = {};
+var demo = {}, centerX = 1500 / 2, centerY = 1000 / 2, doge, speed = 4;
 demo.state0 = function(){};
 demo.state0.prototype = {
-    preload: function(){},
+    preload: function(){
+        game.load.image('doge', 'assets/sprites/Unknown.png');
+    },
     create: function() {
         game.stage.backgroundColor = '#80ff80';
         console.log('State0');
         addChangeStateEventListeners();
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        
+        doge = game.add.sprite(centerX, centerY, 'doge');
+        doge.anchor.setTo(0.5, 0.5);
+    
     },
-    update: function(){}
+    update: function(){
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            doge.x += speed;
+        }
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            doge.x -= speed;
+        }
+                else if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+            doge.y -= speed;
+        }
+                else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+            doge.y += speed;
+        }
+        
+        
+    }
 };
     
 
